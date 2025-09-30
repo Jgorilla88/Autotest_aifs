@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+assets/
+*.pyc
+
+# IDE folders
+.idea/
+.vscode/
+
+# Generated reports
+report.html
