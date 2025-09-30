@@ -41,7 +41,7 @@ jobs:
       - name: Upload report artifact
         # 'if: always()' гарантирует, что шаг выполнится, даже если тесты упали
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-report # Название артефакта
           path: report.html # Путь к файлу, который нужно загрузить
