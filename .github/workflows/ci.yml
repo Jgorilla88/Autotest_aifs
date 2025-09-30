@@ -1,0 +1,38 @@
+# Название нашего workflow, которое будет отображаться на GitHub
+name: Run Python Tests
+
+# Триггер: запускать этот workflow при каждом 'push' в ветку 'main'
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Задания (jobs), которые нужно выполнить
+jobs:
+  build:
+    # Указываем операционную систему для виртуальной машины
+    runs-on: ubuntu-latest
+
+    # Шаги (steps), которые будут выполняться последовательно
+    steps:
+    # Шаг 1: Клонируем код из нашего репозитория на виртуальную машину
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Шаг 2: Настраиваем окружение Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11' # Указываем версию Python
+
+    # Шаг 3: Устанавливаем зависимости из нашего файла
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Шаг 4: Запускаем наши тесты с помощью pytest
+    - name: Run tests with pytest
+      run: |
+        pytest
