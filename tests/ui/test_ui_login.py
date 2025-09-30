@@ -11,11 +11,11 @@ from pages.dashboard_page import DashboardPage
 # --- Фикстура для управления браузером ---
 
 
-@pytest.fixture
-def driver():
-    browser = webdriver.Chrome()
-    yield browser
-    browser.quit()
+# @pytest.fixture
+# def driver():
+#     browser = webdriver.Chrome()
+#     yield browser
+#     browser.quit()
 
 # --- Тест №1: Вход с верным паролем (Happy Path) ---
 
