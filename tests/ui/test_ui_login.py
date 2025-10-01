@@ -1,5 +1,6 @@
 import pytest
-
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -27,8 +28,12 @@ def test_successful_login(driver):
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
 # __acting__
+
+    login = os.getenv('LOGIN')
+    password = os.getenv('PASSWORD')
+
     login_page.open()
-    login_page.login('aifstesters@gmail.com', 'Aifromspace1')
+    login_page.login(login, password)
 # __assert__
     dashboard_page.wait_for_url_contain('dashboard')
 
@@ -53,8 +58,9 @@ def test_failed_wrong_password(driver, password, error_text):
 
     login_page = LoginPage(driver)
 
+    login = os.getenv('LOGIN')
     login_page.open()
-    login_page.login('aifstesters@gmail.com', password)
+    login_page.login(login, password)
 
     # Assert
     # Проверяем тот текст ошибки, который ожидаем для этого набора данных

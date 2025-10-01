@@ -1,5 +1,7 @@
 import pytest
+import os
 import requests
+from dotenv import load_dotenv
 from .base_api import BaseApi  # Импортируем наш базовый класс
 
 # Создаём класс для тестов, который наследуется от BaseApi
@@ -11,9 +13,13 @@ class TestApiLogin(BaseApi):
         # Arrange
         # Используем данные из базового класса
         url = self.BASE_URL + self.LOGIN_ENDPOINT
+
+        login = os.getenv('LOGIN')
+        password = os.getenv('PASSWORD')
+
         payload = {
-            "email": "aifstesters@gmail.com",
-            "password": "Aifromspace1"
+            "email": login,
+            "password": password
         }
         headers = {"Content-Type": "application/json"}
 
@@ -30,8 +36,11 @@ class TestApiLogin(BaseApi):
         # Arrange
         # Используем данные из базового класса
         url = self.BASE_URL + self.LOGIN_ENDPOINT
+
+        login = os.getenv('LOGIN')
+
         payload = {
-            "email": "aifstesters@gmail.com",
+            "email": login,
             "password": "WrongPassword123"
         }
         headers = {"Content-Type": "application/json"}

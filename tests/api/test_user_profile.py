@@ -1,14 +1,19 @@
 import pytest
+import os
 import requests
+from dotenv import load_dotenv
 from .base_api import BaseApi
 
 
 class TestUser(BaseApi):
     def test_take_token(self):
         login_url = self.BASE_URL + self.LOGIN_ENDPOINT
+        login = os.getenv('LOGIN')
+        password = os.getenv('PASSWORD')
+
         login_payload = {
-            "email": "aifstesters@gmail.com",
-            "password": "Aifromspace1"
+            "email": login,
+            "password": password
         }
         login_headers = {"Content-Type": "application/json"}
 

@@ -9,3 +9,6 @@ assets/
 
 # Generated reports
 report.html
+
+# confedential
+.env

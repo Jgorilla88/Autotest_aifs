@@ -34,8 +34,12 @@ jobs:
 
       # Шаг 4: Запускаем наши тесты с помощью pytest
       - name: Run tests with pytest
+        # 👇 НОВЫЙ БЛОК 'env'
+        env:
+          LOGIN: ${{ secrets.LOGIN }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          pytest
+          pytest --html=report.html
 
       # --- ЗАГРУЗКА АРТЕФАКТА ---
       - name: Upload report artifact
