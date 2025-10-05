@@ -5,8 +5,10 @@ from dotenv import load_dotenv
 from .base_api import BaseApi  # Импортируем наш базовый класс
 
 # Создаём класс для тестов, который наследуется от BaseApi
+load_dotenv()
 
 
+@pytest.mark.api
 class TestApiLogin(BaseApi):
 
     def test_successful_api_login(self):

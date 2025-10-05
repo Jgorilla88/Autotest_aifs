@@ -11,7 +11,7 @@ from pages.dashboard_page import DashboardPage
 
 # --- Фикстура для управления браузером ---
 
-
+load_dotenv()
 # @pytest.fixture
 # def driver():
 #     browser = webdriver.Chrome()
@@ -21,6 +21,7 @@ from pages.dashboard_page import DashboardPage
 # --- Тест №1: Вход с верным паролем (Happy Path) ---
 
 
+@pytest.mark.smoke
 def test_successful_login(driver):
     '''Проверяет правильный пароль и почту'''
     wait = WebDriverWait(driver, 10)
@@ -46,6 +47,7 @@ def test_successful_login(driver):
 # --- Тест №2: Вход с неверным паролем (Sad Path) ---
 
 
+@pytest.mark.ui
 @pytest.mark.parametrize(
     "password, error_text",
     [
@@ -72,6 +74,7 @@ def test_failed_wrong_password(driver, password, error_text):
 # --- НОВЫЙ ТЕСТ №3: Проверка браузерной валидации на пустое поле ---
 
 
+@pytest.mark.ui
 def test_empty_password_field_browser_validation(driver):
     '''Проверяет пустой пароль'''
     login_page = LoginPage(driver)

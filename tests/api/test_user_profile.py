@@ -4,7 +4,10 @@ import requests
 from dotenv import load_dotenv
 from .base_api import BaseApi
 
+load_dotenv()
 
+
+@pytest.mark.api
 class TestUser(BaseApi):
     def test_take_token(self):
         login_url = self.BASE_URL + self.LOGIN_ENDPOINT
@@ -34,4 +37,3 @@ class TestUser(BaseApi):
         user_data = user_response.json()
 
         assert user_data['email'] == login_payload['email']
-    pass
